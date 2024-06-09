@@ -1,4 +1,4 @@
-package com.peerlender.profile;
+package com.peerlender.lendingengine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
