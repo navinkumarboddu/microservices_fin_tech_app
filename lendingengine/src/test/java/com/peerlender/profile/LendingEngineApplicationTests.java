@@ -1,6 +1,5 @@
 package com.peerlender.profile;
 
-import liquibase.Liquibase;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,9 +12,6 @@ import javax.sql.DataSource;
 class LendingEngineApplicationTests {
 	@MockBean
 	private DataSource dataSource;
-
-	@MockBean
-	private Liquibase liquibase;
 
 	@Test
 	void contextLoads() {
