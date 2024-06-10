@@ -2,17 +2,32 @@ package com.peerlender.lendingengine.domain.model;
 
 import java.util.Objects;
 
-public final class User {
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    private final String firstName;
+@Entity	
+public final class LoanUser {
 
-    private final String lastName;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+    private String firstName;
 
-    private final int age;
+    private String lastName;
 
-    private final String occupation;
+    private int age;
 
-    public User(String firstName, String lastName, int age, String occupation) {
+    private String occupation;
+
+    public LoanUser() {
+    }
+
+    public LoanUser(long id, String firstName, String lastName, int age, String occupation) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -49,7 +64,7 @@ public final class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        LoanUser user = (LoanUser) o;
         return age == user.age && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(occupation, user.occupation);
     }
 

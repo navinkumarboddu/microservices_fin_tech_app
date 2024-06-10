@@ -3,17 +3,32 @@ package com.peerlender.lendingengine.domain.model;
 import java.time.Duration;
 import java.util.Objects;
 
-public final class LoanRequest {
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public final class LoanApplication {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
     private final int amount;
 
-    private final User borrower;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "borrower_id")
+    private final LoanUser borrower;
 
     private final Duration repaymentTime;
 
     private final double interestRate;
 
-    public LoanRequest(int amount, User borrower, Duration repaymentTime, double interestRate) {
+    public LoanApplication(int amount, LoanUser borrower, Duration repaymentTime, double interestRate) {
         this.amount = amount;
         this.borrower = borrower;
         this.repaymentTime = repaymentTime;
@@ -24,7 +39,7 @@ public final class LoanRequest {
         return amount;
     }
 
-    public User getBorrower() {
+    public LoanUser getBorrower() {
         return borrower;
     }
 
@@ -50,7 +65,7 @@ public final class LoanRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LoanRequest that = (LoanRequest) o;
+        LoanApplication that = (LoanApplication) o;
         return amount == that.amount && Double.compare(interestRate, that.interestRate) == 0 && Objects.equals(borrower, that.borrower) && Objects.equals(repaymentTime, that.repaymentTime);
     }
 
