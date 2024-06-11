@@ -3,8 +3,9 @@ package com.peerlender.lendingengine.application;
 import com.peerlender.lendingengine.application.model.LoanRequest;
 import com.peerlender.lendingengine.domain.model.LoanApplication;
 import com.peerlender.lendingengine.domain.model.LoanUser;
-import com.peerlender.lendingengine.domain.repository.LoanRequestRepository;
+import com.peerlender.lendingengine.domain.repository.LoanApplicationRepository;
 import com.peerlender.lendingengine.domain.repository.LoanUserRepository;
+import com.peerlender.lendingengine.domain.service.LoanApplicationAdapter;
 
 import java.util.List;
 
@@ -17,20 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoanController {
 
-	private final LoanRequestRepository loanRequestRepository;
+	private final LoanApplicationRepository loanApplicationRepository;
 	
 	@Autowired
 	private LoanUserRepository loanUserRepository;
+	
+	@Autowired
+	private LoanApplicationAdapter  loanApplicationAdapter;
 
 	@Autowired
-	public LoanController(LoanRequestRepository loanRequestRepository) {
+	public LoanController(LoanApplicationRepository loanRequestRepository) {
 		super();
-		this.loanRequestRepository = loanRequestRepository;
+		this.loanApplicationRepository = loanRequestRepository;
 	}
 
 	@PostMapping(value = "/loan/request")
 	public void requestLoan(@RequestBody final LoanRequest loanRequest) {
-		System.out.println(loanRequest);
+		LoanApplication loanApplication = loanApplicationAdapter.transform(loanRequest);
+		loanApplicationRepository.save(loanApplication);
 	}
 	
 	@GetMapping(value="/users")

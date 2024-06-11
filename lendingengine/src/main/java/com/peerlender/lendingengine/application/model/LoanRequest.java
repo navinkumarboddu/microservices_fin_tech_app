@@ -31,6 +31,11 @@ public class LoanRequest {
 	public long getDaysToRepay() {
 		return daysToRepay;
 	}
+	
+	
+	public double getInterestRate() {
+		return interestRate;
+	}
 
 	@Override
 	public int hashCode() {
