@@ -13,64 +13,67 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public final class LoanApplication {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    private final int amount;
+	private int amount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "borrower_id")
-    private final LoanUser borrower;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "borrower_id")
+	private LoanUser borrower;
 
-    private final Duration repaymentTime;
+	private Duration repaymentTime;
 
-    private final double interestRate;
+	private double interestRate;
 
-    public LoanApplication(int amount, LoanUser borrower, Duration repaymentTime, double interestRate) {
-        this.amount = amount;
-        this.borrower = borrower;
-        this.repaymentTime = repaymentTime;
-        this.interestRate = interestRate;
-    }
+	public LoanApplication() {
+		super();
+	}
 
-    public int getAmount() {
-        return amount;
-    }
+	public LoanApplication(int amount, LoanUser borrower, Duration repaymentTime, double interestRate) {
+		this.amount = amount;
+		this.borrower = borrower;
+		this.repaymentTime = repaymentTime;
+		this.interestRate = interestRate;
+	}
 
-    public LoanUser getBorrower() {
-        return borrower;
-    }
+	public int getAmount() {
+		return amount;
+	}
 
-    public Duration getRepaymentTime() {
-        return repaymentTime;
-    }
+	public LoanUser getBorrower() {
+		return borrower;
+	}
 
-    public double getInterestRate() {
-        return interestRate;
-    }
+	public Duration getRepaymentTime() {
+		return repaymentTime;
+	}
 
-    @Override
-    public String toString() {
-        return "LoanRequest{" +
-                "amount=" + amount +
-                ", borrower=" + borrower +
-                ", repaymentTime=" + repaymentTime +
-                ", interestRate=" + interestRate +
-                '}';
-    }
+	public double getInterestRate() {
+		return interestRate;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LoanApplication that = (LoanApplication) o;
-        return amount == that.amount && Double.compare(interestRate, that.interestRate) == 0 && Objects.equals(borrower, that.borrower) && Objects.equals(repaymentTime, that.repaymentTime);
-    }
+	@Override
+	public String toString() {
+		return "LoanRequest{" + "amount=" + amount + ", borrower=" + borrower + ", repaymentTime=" + repaymentTime
+				+ ", interestRate=" + interestRate + '}';
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount, borrower, repaymentTime, interestRate);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		LoanApplication that = (LoanApplication) o;
+		return amount == that.amount && Double.compare(interestRate, that.interestRate) == 0
+				&& Objects.equals(borrower, that.borrower) && Objects.equals(repaymentTime, that.repaymentTime);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(amount, borrower, repaymentTime, interestRate);
+	}
 }
