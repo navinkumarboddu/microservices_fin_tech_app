@@ -24,7 +24,7 @@ public final class LoanApplication {
 	@JoinColumn(name = "borrower_id")
 	private LoanUser borrower;
 
-	private Duration repaymentTime;
+	private int repaymentTimeInDays;
 
 	private double interestRate;
 
@@ -32,10 +32,10 @@ public final class LoanApplication {
 		super();
 	}
 
-	public LoanApplication(int amount, LoanUser borrower, Duration repaymentTime, double interestRate) {
+	public LoanApplication(int amount, LoanUser borrower, int repaymentTimeInDays, double interestRate) {
 		this.amount = amount;
 		this.borrower = borrower;
-		this.repaymentTime = repaymentTime;
+		this.repaymentTimeInDays = repaymentTimeInDays;
 		this.interestRate = interestRate;
 	}
 
@@ -47,8 +47,8 @@ public final class LoanApplication {
 		return borrower;
 	}
 
-	public Duration getRepaymentTime() {
-		return repaymentTime;
+	public int getRepaymentTimeInDays() {
+		return repaymentTimeInDays;
 	}
 
 	public double getInterestRate() {
@@ -57,7 +57,7 @@ public final class LoanApplication {
 
 	@Override
 	public String toString() {
-		return "LoanRequest{" + "amount=" + amount + ", borrower=" + borrower + ", repaymentTime=" + repaymentTime
+		return "LoanRequest{" + "amount=" + amount + ", borrower=" + borrower + ", repaymentTimeInDays=" + repaymentTimeInDays
 				+ ", interestRate=" + interestRate + '}';
 	}
 
@@ -69,11 +69,11 @@ public final class LoanApplication {
 			return false;
 		LoanApplication that = (LoanApplication) o;
 		return amount == that.amount && Double.compare(interestRate, that.interestRate) == 0
-				&& Objects.equals(borrower, that.borrower) && Objects.equals(repaymentTime, that.repaymentTime);
+				&& Objects.equals(borrower, that.borrower) && Objects.equals(repaymentTimeInDays, that.repaymentTimeInDays);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, borrower, repaymentTime, interestRate);
+		return Objects.hash(amount, borrower, repaymentTimeInDays, interestRate);
 	}
 }

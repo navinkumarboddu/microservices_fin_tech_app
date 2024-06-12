@@ -21,8 +21,8 @@ public class LoanApplicationAdapter {
 	public LoanApplication transform(LoanRequest loanRequest) {
 		Optional<LoanUser> user = loanUserRepository.findById(loanRequest.getBorrowerId());
 		if (user.isPresent()) {
-			return new LoanApplication(loanRequest.getAmount(), user.get(), Duration.ofDays(loanRequest.getDaysToRepay()),
-					loanRequest.getInterestRate());
+			return new LoanApplication(loanRequest.getAmount(), user.get(), 
+					loanRequest.getDaysToRepay(), loanRequest.getInterestRate());
 		} else {
 			throw new UserNotFoundException(loanRequest.getBorrowerId());
 		}

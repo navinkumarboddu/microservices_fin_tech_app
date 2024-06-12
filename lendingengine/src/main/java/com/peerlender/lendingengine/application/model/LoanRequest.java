@@ -8,11 +8,11 @@ public class LoanRequest {
 
 	private final long borrowerId;
 
-	private final long daysToRepay;
+	private final int daysToRepay;
 
 	private final double interestRate;
 
-	public LoanRequest(int amount, long borrowerId, long daysToRepay, double interestRate) {
+	public LoanRequest(int amount, long borrowerId, int daysToRepay, double interestRate) {
 		super();
 		this.amount = amount;
 		this.borrowerId = borrowerId;
@@ -28,7 +28,7 @@ public class LoanRequest {
 		return borrowerId;
 	}
 
-	public long getDaysToRepay() {
+	public int getDaysToRepay() {
 		return daysToRepay;
 	}
 	
