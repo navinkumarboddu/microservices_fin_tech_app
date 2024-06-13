@@ -7,9 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity	
-public final class LoanUser {
+@Entity
+@Table(name = "`user`")
+public final class User {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +25,10 @@ public final class LoanUser {
 
     private String occupation;
 
-    public LoanUser() {
+    public User() {
     }
 
-    public LoanUser(long id, String firstName, String lastName, int age, String occupation) {
+    public User(long id, String firstName, String lastName, int age, String occupation) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,7 +66,7 @@ public final class LoanUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LoanUser user = (LoanUser) o;
+        User user = (User) o;
         return age == user.age && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(occupation, user.occupation);
     }
 

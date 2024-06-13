@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 import com.peerlender.lendingengine.application.model.LoanRequest;
 import com.peerlender.lendingengine.domain.exception.UserNotFoundException;
 import com.peerlender.lendingengine.domain.model.LoanApplication;
-import com.peerlender.lendingengine.domain.model.LoanUser;
-import com.peerlender.lendingengine.domain.repository.LoanUserRepository;
+import com.peerlender.lendingengine.domain.model.User;
+import com.peerlender.lendingengine.domain.repository.UserRepository;
 
 @Component
 public class LoanApplicationAdapter {
 
 	@Autowired
-	private LoanUserRepository loanUserRepository;
+	private UserRepository loanUserRepository;
 
 	public LoanApplication transform(LoanRequest loanRequest) {
-		Optional<LoanUser> user = loanUserRepository.findById(loanRequest.getBorrowerId());
+		Optional<User> user = loanUserRepository.findById(loanRequest.getBorrowerId());
 		if (user.isPresent()) {
 			return new LoanApplication(loanRequest.getAmount(), user.get(), 
 					loanRequest.getDaysToRepay(), loanRequest.getInterestRate());

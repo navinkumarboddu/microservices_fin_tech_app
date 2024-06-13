@@ -10,8 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.peerlender.lendingengine.domain.model.LoanUser;
-import com.peerlender.lendingengine.domain.repository.LoanUserRepository;
+import com.peerlender.lendingengine.domain.model.User;
+import com.peerlender.lendingengine.domain.repository.UserRepository;
 
 @SpringBootApplication
 public class LendingEngineApplication implements CommandLineRunner {
@@ -20,7 +20,7 @@ public class LendingEngineApplication implements CommandLineRunner {
 			(Logger) LoggerFactory.getLogger(LendingEngineApplication.class);
 
 	@Autowired
-	private LoanUserRepository userRepository;
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LendingEngineApplication.class, args);
@@ -28,14 +28,14 @@ public class LendingEngineApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		LoanUser user = new LoanUser(1,"John", "Spareow", 26, "Worker");
+		User user = new User(1,"John", "Spareow", 26, "Worker");
 		userRepository.save(user);
 		log.info("New user created :" + user);
 
-		Optional<LoanUser> optionalUser = userRepository.findById(1L);
+		Optional<User> optionalUser = userRepository.findById(1L);
 		log.info("Found user :" + optionalUser.get());
 
-		List<LoanUser> userList = userRepository.findAll();
+		List<User> userList = userRepository.findAll();
 		userList.stream().forEach(System.out::println);
 	}
 

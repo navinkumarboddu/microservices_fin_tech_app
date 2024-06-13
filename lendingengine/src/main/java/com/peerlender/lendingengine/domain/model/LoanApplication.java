@@ -22,7 +22,7 @@ public final class LoanApplication {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "borrower_id")
-	private LoanUser borrower;
+	private User borrower;
 
 	private int repaymentTimeInDays;
 
@@ -32,7 +32,7 @@ public final class LoanApplication {
 		super();
 	}
 
-	public LoanApplication(int amount, LoanUser borrower, int repaymentTimeInDays, double interestRate) {
+	public LoanApplication(int amount, User borrower, int repaymentTimeInDays, double interestRate) {
 		this.amount = amount;
 		this.borrower = borrower;
 		this.repaymentTimeInDays = repaymentTimeInDays;
@@ -43,7 +43,7 @@ public final class LoanApplication {
 		return amount;
 	}
 
-	public LoanUser getBorrower() {
+	public User getBorrower() {
 		return borrower;
 	}
 
