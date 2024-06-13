@@ -1,6 +1,7 @@
 package com.peerlender.lendingengine.application;
 
 import com.peerlender.lendingengine.application.model.LoanRequest;
+import com.peerlender.lendingengine.domain.model.Loan;
 import com.peerlender.lendingengine.domain.model.LoanApplication;
 import com.peerlender.lendingengine.domain.model.User;
 import com.peerlender.lendingengine.domain.repository.LoanApplicationRepository;
@@ -56,5 +57,10 @@ public class LoanController {
 	@PostMapping(value = "/loan/accept/{lenderId}/{loanApplicationId}")
 	public void acceptLoan(@PathVariable final String lenderId, @PathVariable final String loanApplicationId) {
 		loanService.acceptLoan(Long.parseLong(loanApplicationId), Long.parseLong(lenderId));
+	}
+
+	@GetMapping(value = "/loans")
+	public List<Loan> findLoans() {
+		return loanService.getLoans();
 	}
 }
