@@ -27,7 +27,7 @@ public class LoanService {
 	@Autowired
 	private LoanRepository loanRepository;
 
-	public void acceptLoan(final long loanApplicationId, final long lenderId) {
+	public void acceptLoan(final long loanApplicationId, final String lenderId) {
 		Optional<User> loanUser = Optional
 				.of(loanUserRepository.findById(lenderId).orElseThrow(() -> new UserNotFoundException(lenderId)));
 		Optional<LoanApplication> loanApplication = Optional.of(loanApplicationRepository.findById(loanApplicationId)

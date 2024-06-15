@@ -14,64 +14,70 @@ import jakarta.persistence.Table;
 public final class User {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-    private String firstName;
+	private String userName;
 
-    private String lastName;
+	private String firstName;
 
-    private int age;
+	private String lastName;
 
-    private String occupation;
+	private int age;
 
-    public User() {
-    }
+	private String occupation;
 
-    public User(long id, String firstName, String lastName, int age, String occupation) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.occupation = occupation;
-    }
+	public User() {
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public User(String userName, String firstName, String lastName, int age, String occupation) {
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.occupation = occupation;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public int getAge() {
-        return age;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getOccupation() {
-        return occupation;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", occupation='" + occupation + '\'' +
-                '}';
-    }
+	public int getAge() {
+		return age;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(occupation, user.occupation);
-    }
+	public String getOccupation() {
+		return occupation;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, age, occupation);
-    }
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", occupation=" + occupation + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, firstName, lastName, occupation, userName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return age == other.age && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(occupation, other.occupation)
+				&& Objects.equals(userName, other.userName);
+	}
+
 }

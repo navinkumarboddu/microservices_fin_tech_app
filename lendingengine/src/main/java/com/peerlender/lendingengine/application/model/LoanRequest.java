@@ -6,13 +6,13 @@ public class LoanRequest {
 
 	private final int amount;
 
-	private final long borrowerId;
+	private final String borrowerId;
 
 	private final int daysToRepay;
 
 	private final double interestRate;
 
-	public LoanRequest(int amount, long borrowerId, int daysToRepay, double interestRate) {
+	public LoanRequest(int amount, String borrowerId, int daysToRepay, double interestRate) {
 		super();
 		this.amount = amount;
 		this.borrowerId = borrowerId;
@@ -24,35 +24,32 @@ public class LoanRequest {
 		return amount;
 	}
 
-	public long getBorrowerId() {
+	public String getBorrowerId() {
 		return borrowerId;
 	}
 
 	public int getDaysToRepay() {
 		return daysToRepay;
 	}
-	
-	
+
 	public double getInterestRate() {
 		return interestRate;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(amount, borrowerId, daysToRepay, interestRate);
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		LoanRequest that = (LoanRequest) o;
+		return amount == that.amount && daysToRepay == that.daysToRepay
+				&& Double.compare(interestRate, that.interestRate) == 0 && Objects.equals(borrowerId, that.borrowerId);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LoanRequest other = (LoanRequest) obj;
-		return amount == other.amount && borrowerId == other.borrowerId && daysToRepay == other.daysToRepay
-				&& Double.doubleToLongBits(interestRate) == Double.doubleToLongBits(other.interestRate);
+	public int hashCode() {
+		return Objects.hash(amount, borrowerId, daysToRepay, interestRate);
 	}
 
 	@Override

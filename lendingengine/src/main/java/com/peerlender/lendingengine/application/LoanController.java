@@ -56,7 +56,7 @@ public class LoanController {
 
 	@PostMapping(value = "/loan/accept/{lenderId}/{loanApplicationId}")
 	public void acceptLoan(@PathVariable final String lenderId, @PathVariable final String loanApplicationId) {
-		loanService.acceptLoan(Long.parseLong(loanApplicationId), Long.parseLong(lenderId));
+		loanService.acceptLoan(Long.parseLong(loanApplicationId), lenderId);
 	}
 
 	@GetMapping(value = "/loans")
