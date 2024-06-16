@@ -6,26 +6,19 @@ public class LoanRequest {
 
 	private final int amount;
 
-	private final String borrowerId;
-
 	private final int daysToRepay;
 
 	private final double interestRate;
 
-	public LoanRequest(int amount, String borrowerId, int daysToRepay, double interestRate) {
+	public LoanRequest(int amount, int daysToRepay, double interestRate) {
 		super();
 		this.amount = amount;
-		this.borrowerId = borrowerId;
 		this.daysToRepay = daysToRepay;
 		this.interestRate = interestRate;
 	}
 
 	public int getAmount() {
 		return amount;
-	}
-
-	public String getBorrowerId() {
-		return borrowerId;
 	}
 
 	public int getDaysToRepay() {
@@ -44,17 +37,17 @@ public class LoanRequest {
 			return false;
 		LoanRequest that = (LoanRequest) o;
 		return amount == that.amount && daysToRepay == that.daysToRepay
-				&& Double.compare(interestRate, that.interestRate) == 0 && Objects.equals(borrowerId, that.borrowerId);
+				&& Double.compare(interestRate, that.interestRate) == 0;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, borrowerId, daysToRepay, interestRate);
+		return Objects.hash(amount, daysToRepay, interestRate);
 	}
 
 	@Override
 	public String toString() {
-		return "LoanRequest [amount=" + amount + ", borrowerId=" + borrowerId + ", daysToRepay=" + daysToRepay
+		return "LoanRequest [amount=" + amount + ", daysToRepay=" + daysToRepay
 				+ ", interestRate=" + interestRate + "]";
 	}
 
