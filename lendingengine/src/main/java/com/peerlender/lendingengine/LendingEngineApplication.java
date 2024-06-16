@@ -28,11 +28,11 @@ public class LendingEngineApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User("john","John", "Spareow", 26, "Worker");
+		User user = new User("Bhairava","Bhairava", "Kannappa", 26, "Lord of world");
 		userRepository.save(user);
 		log.info("New user created :" + user);
 
-		Optional<User> optionalUser = userRepository.findById("john");
+		Optional<User> optionalUser = userRepository.findById("Bhairava");
 		log.info("Found user :" + optionalUser.get());
 
 		List<User> userList = userRepository.findAll();
